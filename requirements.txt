@@ -1,0 +1,26 @@
+# 데이터 처리 및 분석
+pandas
+polars
+numpy
+
+# 머신러닝 모델 및 도구
+scikit-learn
+xgboost
+lightgbm
+catboost
+joblib
+optuna
+
+# 내부 연산 및 진행률 도구
+tqdm
+
+# 시각화
+matplotlib
+seaborn
+
+# 데이터 입출력 최적화 (Parquet 지원)
+pyarrow
+fastparquet
+
+# 기타 및 개발 편의성 (Jupyter/VSCode 연동용)
+ipykernel

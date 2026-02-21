@@ -1,0 +1,21 @@
+# Virtual environment
+venv/
+env/
+
+# Mac OS files
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+
+# CatBoost logs
+catboost_info/
+
+# Data files (대용량 파일)
+data/raw/*.csv
+data/processed/*.parquet
+data/cache/*.parquet
+data/irr_cache.parquet
+*.csv
+*.parquet
