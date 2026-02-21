@@ -11,7 +11,8 @@
 - **Goal:** 부도 예측 정확도가 아닌 **투자 포트폴리오 성과(Sharpe Ratio 및 IRR)** 최적화
 - **Algorithms:** XGBoost, LightGBM, CatBoost 및 Soft Voting 앙상블 기법 적용
 - **Cost-sensitive Learning:** 대출 금액 규모 및 부도 패널티를 결합한 샘플 가중치(`sample_weight`) 산출 및 통제
-- **Evaluation Design:** - **OOT(Out-of-Time) Test:** 시계열 기준 가장 최근 20% 데이터를 완벽히 분리하여 미래 시장 모사
+- **Evaluation Design:** 
+  - **OOT(Out-of-Time) Test:** 시계열 기준 가장 최근 20% 데이터를 완벽히 분리하여 미래 시장 모사
   - **Bootstrap Simulation:** 과거 80% 데이터 내에서 100회의 층화 무작위 추출 재학습을 통한 모형 강건성 검증
 - **Decision Unit:** 단순 확률 임계값이 아닌 **최적 승인률(Top-K)** 기반의 포트폴리오 편입 의사결정
 
