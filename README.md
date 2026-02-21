@@ -1,8 +1,8 @@
 # 📘 P2P Lending Portfolio Optimization: A Cost-Sensitive Machine Learning Approach
 
-본 프로젝트는 Lending Club P2P 대출 데이터(2007~2020)를 활용하여, 단순한 부도 예측(Classification)을 넘어 **실제 투자자의 위험 조정 수익률(Risk-Adjusted Return)을 극대화**하기 위한 포트폴리오 최적화 파이프라인입니다. 
+본 프로젝트는 Lending Club P2P 대출 데이터(2007~2020)를 활용하여 **실제 투자자의 위험 조정 수익률(Risk-Adjusted Return)을 극대화**하기 위한 포트폴리오 최적화 파이프라인입니다. 
 
-금융 데이터의 비대칭적 손실 구조를 반영한 **비용 민감 학습(Cost-sensitive Learning)**과 미래 시장에 대한 **OOT(Out-of-Time) 몬테카를로 시뮬레이션**을 통해 모형의 강건성과 실무적 효용성을 입증합니다.
+금융 데이터의 비대칭적 손실 구조를 반영한 비용 민감 학습과 미래 시장에 대한 **OOT(Out-of-Time) 몬테카를로 시뮬레이션**을 통해 모형의 강건성과 실무적 효용성을 입증합니다.
 
 ---
 
@@ -10,9 +10,9 @@
 
 - **Goal:** 부도 예측 정확도가 아닌 **투자 포트폴리오 성과(Sharpe Ratio 및 IRR)** 최적화
 - **Algorithms:** XGBoost, LightGBM, CatBoost 및 Soft Voting 앙상블 기법 적용
-- **Cost-sensitive Learning:** 대출 금액 규모(Log-scale) 및 부도 패널티를 결합한 샘플 가중치(`sample_weight`) 산출 및 통제
+- **Cost-sensitive Learning:** 대출 금액 규모 및 부도 패널티를 결합한 샘플 가중치(`sample_weight`) 산출 및 통제
 - **Evaluation Design:** - **OOT(Out-of-Time) Test:** 시계열 기준 가장 최근 20% 데이터를 완벽히 분리하여 미래 시장 모사
-  - **Bootstrap Simulation:** 과거 80% 데이터 내에서 100회의 층화 무작위 추출(Stratified Split) 재학습을 통한 모형 강건성(Robustness) 검증
+  - **Bootstrap Simulation:** 과거 80% 데이터 내에서 100회의 층화 무작위 추출 재학습을 통한 모형 강건성 검증
 - **Decision Unit:** 단순 확률 임계값이 아닌 **최적 승인률(Top-K)** 기반의 포트폴리오 편입 의사결정
 
 ---
@@ -33,6 +33,7 @@ graph TD
 
 # 📂 Directory Structure
 
+```bash
 Lending-Club-PRJ/
 ├── data/
 │   ├── processed/                  # 전처리 완료 Parquet 데이터
@@ -51,7 +52,7 @@ Lending-Club-PRJ/
 │   └── approval_rate_sweep.py      # 수익성(ROI)과 안정성(Sharpe) 기반 임계값 탐색
 ├── requirements.txt
 └── README.md
-
+```
 
 # 🏃 How to Run (테스트 및 실행 가이드)
 
