@@ -183,17 +183,10 @@ def main():
     print("🔄 [Step 2] 데이터 스트리밍 처리 및 메모리 적재...")
     df = q.collect(engine='streaming')
     
-    print("🔠 [Step 3] 범주형 변수(Categorical) 최적화 인코딩...")
-    cat_targets = ['home_ownership', 'purpose', 'initial_list_status', 'grade', 'sub_grade', 'verification_status']
-    existing_cats = [c for c in cat_targets if c in df.columns]
-    
-    if existing_cats:
-        df = df.with_columns([
-            pl.col(c).cast(pl.Categorical) for c in existing_cats
-        ])
+    # [수정됨] Polars 단계에서의 Categorical 변환 생략 (Pandas 호환성 에러 원천 차단)
     
     save_path = config.DATA_PATH
-    print(f"💾 [Step 4] 압축 저장 중 (ZSTD Compression) -> {save_path}")
+    print(f"💾 [Step 3] 압축 저장 중 (ZSTD Compression) -> {save_path}")
     df.write_parquet(save_path, compression='zstd')
     
     print(f"✅ 전처리 파이프라인 완수. Final Matrix Shape: {df.shape}")

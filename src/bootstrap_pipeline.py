@@ -276,12 +276,12 @@ def main():
     TOP_K_RATIO = 0.15
 
     now_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    save_dir = os.path.join(config.BASE_DIR, "../reports/figures", f"monte_carlo_{now_str}")
+    save_dir = os.path.join(config.BASE_DIR, "../reports/figures", f"bootstrap_{now_str}")
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
     print("\n" + "=" * 60)
-    print("🚀 [Monte Carlo Simulation] Model Robustness Evaluation")
+    print("🚀 [Bootstrap Simulation] Model Robustness Evaluation")
     print(f"   Iterations: {N_ITER} | Threshold: {TOP_K_RATIO:.2f} | Stability Score Evaluated")
     print("=" * 60)
 
@@ -354,7 +354,7 @@ def main():
 
     final_model_params = {}
 
-    print(f"\n🔥 [Step 3] Monte Carlo 시뮬레이션 수행 ({N_ITER} Iterations)...")
+    print(f"\n🔥 [Step 3] Bootstrap 시뮬레이션 수행 ({N_ITER} Iterations)...")
     for i in tqdm(range(N_ITER), desc="Running Simulation"):
         try:
             train_idx, val_idx = _stratified_train_val_indices(
@@ -451,7 +451,7 @@ def main():
     irr_std_df = pd.DataFrame(irr_std_results)
 
     print("\n" + "=" * 130)
-    print("📊 [Final Report] Monte Carlo Simulation Results")
+    print("📊 [Final Report] Bootstrap Simulation Results")
     print("👉 Stability Score = Mean - (Std * 0.5)")
     print("-" * 130)
     print(
@@ -595,12 +595,12 @@ def main():
         if len(s) >= 2 and float(np.std(s)) > 1e-12:
             sns.kdeplot(s, fill=False, linewidth=2, label=f"{m} (Score: {stat['score']:.3f})")
 
-    plt.title(f"Monte Carlo Simulation ({N_ITER} runs): Sharpe Ratio Distribution")
+    plt.title(f"Bootstrap Simulation ({N_ITER} runs): Sharpe Ratio Distribution")
     plt.xlabel("Sharpe Ratio")
     plt.ylabel("Density")
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig(os.path.join(save_dir, "monte_carlo_distribution.png"))
+    plt.savefig(os.path.join(save_dir, "bootstrap_distribution.png"))
     plt.close()
 
     plt.figure(figsize=(12, 6))
@@ -620,9 +620,9 @@ def main():
     if ax.legend_ is not None:
         ax.legend_.remove()
 
-    plt.title("Monte Carlo Simulation: Sharpe Ratio Comparison (Sorted by Score)")
+    plt.title("Bootstrap Simulation: Sharpe Ratio Comparison (Sorted by Score)")
     plt.grid(axis="y", alpha=0.3)
-    plt.savefig(os.path.join(save_dir, "monte_carlo_boxplot.png"))
+    plt.savefig(os.path.join(save_dir, "bootstrap_boxplot.png"))
     plt.close()
 
 if __name__ == "__main__":

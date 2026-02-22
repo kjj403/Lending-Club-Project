@@ -13,7 +13,16 @@ def _get_irr_cache_path() -> str:
 def load_processed_data():
     if not os.path.exists(config.DATA_PATH):
         raise FileNotFoundError(f"데이터 파일이 존재하지 않습니다: {config.DATA_PATH}")
-    return pd.read_parquet(config.DATA_PATH)
+        
+    df = pd.read_parquet(config.DATA_PATH)
+    
+    # [수정됨] 데이터를 불러온 후 Pandas 환경에서 안전하게 Categorical 타입으로 변환합니다.
+    cat_targets = ['home_ownership', 'purpose', 'initial_list_status', 'grade', 'sub_grade', 'verification_status']
+    existing_cats = [c for c in cat_targets if c in df.columns]
+    for c in existing_cats:
+        df[c] = df[c].astype('category')
+        
+    return df
 
 def load_treasury_rates():
     """
