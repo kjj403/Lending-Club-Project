@@ -1,8 +1,8 @@
 # 📘 P2P Lending Portfolio Optimization: A Cost-Sensitive Machine Learning Approach
 
-본 프로젝트는 Lending Club P2P 대출 데이터(2007~2020)를 활용하여 **실제 투자자의 위험 조정 수익률(Risk-Adjusted Return)을 극대화**하기 위한 포트폴리오 최적화 파이프라인입니다. 
+본 프로젝트는 Lending Club P2P 대출 데이터(2007~2020)를 활용하여 **위험 조정 수익률(Risk-Adjusted Return)을 기준으로 대출 포트폴리오를 비교·평가**하는 분석 파이프라인입니다. 
 
-금융 데이터의 비대칭적 손실 구조를 반영한 비용 민감 학습과 미래 시장에 대한 **OOT(Out-of-Time) 몬테카를로 시뮬레이션**을 통해 모형의 강건성과 실무적 효용성을 입증합니다.
+금융 데이터의 비대칭적 손실 구조를 반영한 비용 민감 학습과 **OOT(Out-of-Time) 평가 및 반복 표본 검증**을 통해 모형의 강건성과 활용 가능성을 점검합니다.
 
 ---
 
